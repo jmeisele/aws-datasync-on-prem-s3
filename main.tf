@@ -29,3 +29,9 @@ resource "aws_datasync_location_s3" "staging" {
     bucket_access_role_arn = aws_iam_role.datasync.arn
   }
 }
+
+resource "aws_datasync_agent" "this" {
+  # ip_address = "1.2.3.4"
+  activation_key = "3VTC7-QFC0C-3E3D6-1JVPD-1P93L"
+  name           = "jason-mbp"
+}
