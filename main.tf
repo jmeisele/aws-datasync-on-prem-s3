@@ -31,7 +31,14 @@ resource "aws_datasync_location_s3" "staging" {
 }
 
 resource "aws_datasync_agent" "this" {
-  # ip_address = "1.2.3.4"
-  activation_key = "3VTC7-QFC0C-3E3D6-1JVPD-1P93L"
+  activation_key = "7J5QL-KCIV9-J698U-L0F8K-U85OF"
   name           = "jason-mbp"
+}
+
+resource "aws_datasync_location_smb" "local_smb" {
+  server_hostname = "192.168.1.66"
+  subdirectory    = "/Users/jasoneisele/Desktop/50-days-rust"
+  user            = "jasoneisele"
+  password        = var.password
+  agent_arns      = [aws_datasync_agent.this.arn]
 }
