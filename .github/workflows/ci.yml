@@ -25,6 +25,7 @@ jobs:
           echo "access_key=\"${{ secrets.AWS_ACCESS_KEY_ID }}\"" >> ./.auto.tfvars
           echo "secret_key=\"${{ secrets.AWS_SECRET_ACCESS_KEY }}\"" >> ./.auto.tfvars
           echo "password=\"${{ secrets.PASSWORD }}\"" >> ./.auto.tfvars
+          echo "activation_key=\"${{ secrets.ACTIVATION_KEY }}\"" >> ./.auto.tfvars
           echo "---------------------------------------------------------"
           cat ./.auto.tfvars
           echo "---------------------------------------------------------"

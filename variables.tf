@@ -21,3 +21,8 @@ variable "password" {
   type      = string
   sensitive = true
 }
+
+variable "activation_key" {
+  type      = string
+  sensitive = true
+}
