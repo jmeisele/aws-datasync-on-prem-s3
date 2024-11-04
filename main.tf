@@ -48,7 +48,8 @@ resource "aws_datasync_task" "xfer_rust" {
   name                     = "xfer_rust"
   source_location_arn      = aws_datasync_location_smb.local_smb.arn
   options {
-    bytes_per_second = -1
+    bytes_per_second  = -1
+    posix_permissions = "NONE"
   }
   # excludes {
   #   filter_type = "SIMPLE_PATTERN"
