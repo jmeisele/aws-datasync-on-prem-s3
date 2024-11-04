@@ -35,7 +35,7 @@ resource "aws_datasync_agent" "this" {
   name           = "jason-mbp"
 }
 
-resource "aws_datasync_location_smb" "example" {
+resource "aws_datasync_location_smb" "local_smb" {
   server_hostname = "192.168.1.66"
   subdirectory    = "/Users/jasoneisele/Desktop/50-days-rust"
   user            = "jasoneisele"
