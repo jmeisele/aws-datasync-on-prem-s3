@@ -50,6 +50,7 @@ resource "aws_datasync_task" "xfer_rust" {
   options {
     bytes_per_second  = -1
     posix_permissions = "NONE"
+    uid               = "NONE"
   }
   # excludes {
   #   filter_type = "SIMPLE_PATTERN"
