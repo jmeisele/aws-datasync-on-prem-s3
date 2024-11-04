@@ -42,3 +42,20 @@ resource "aws_datasync_location_smb" "local_smb" {
   password        = var.password
   agent_arns      = [aws_datasync_agent.this.arn]
 }
+
+resource "aws_datasync_task" "xfer_rust" {
+  destination_location_arn = aws_datasync_location_s3.staging.arn
+  name                     = "xfer_rust"
+  source_location_arn      = aws_datasync_location_smb.local_smb.arn
+  options {
+    bytes_per_second = -1
+  }
+  # excludes {
+  #   filter_type = "SIMPLE_PATTERN"
+  #   value       = "/folder1|/folder2"
+  # }
+  # includes {
+  #   filter_type = "SIMPLE_PATTERN"
+  #   value       = "/folder1|/folder2"
+  # }
+}
