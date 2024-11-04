@@ -12,3 +12,6 @@ I am using my local MacBook Pro to simulate an on-prem server.
 
 # SMB Setup
 - [x] Turn your Mac into an [SMB File Server](https://www.youtube.com/watch?v=FvVZN2WcPhc)
+
+# CI/CD
+Continuous Integration and Continuous Delivery happen via GitHub Actions in workflows defined `ci.yml` and `cd.yml` respectively.
