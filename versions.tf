@@ -4,13 +4,13 @@ terraform {
     hostname     = "app.terraform.io"
     organization = "davinci"
     workspaces {
-      name = "terrafrom-aws-starter"
+      name = "aws-datasync-on-prem-s3"
     }
   }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 5.0"
     }
   }
 }
