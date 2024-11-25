@@ -19,6 +19,18 @@ data "aws_iam_policy_document" "datasync_assume_role_policy" {
 
 data "aws_iam_policy_document" "allow_access_from_datasync_role" {
   statement {
+    principals {
+      type        = "AWS"
+      identifiers = [var.account_id]
+    }
+    actions = [
+      "s3:PutBucketAcl"
+    ]
+    resources = [
+      aws_s3_bucket.this.arn
+    ]
+  }
+  statement {
     actions = [
       "s3:GetBucketLocation",
       "s3:ListBucket",
@@ -56,18 +68,6 @@ data "aws_iam_policy_document" "allow_access_from_datasync_role" {
 
 data "aws_iam_policy_document" "s3_policy" {
   statement {
-    principals {
-      type        = "AWS"
-      identifiers = [var.account_id]
-    }
-    actions = [
-      "s3:PutBucketAcl"
-    ]
-    resources = [
-      aws_s3_bucket.this.arn
-    ]
-  }
-  statement {
     actions = [
       "s3:GetBucketLocation",
       "s3:ListBucket",
@@ -92,5 +92,35 @@ data "aws_iam_policy_document" "s3_policy" {
     resources = [
       "${aws_s3_bucket.this.arn}/*"
     ]
+  }
+}
+
+data "aws_iam_policy_document" "kms_key_policy" {
+  statement {
+    sid    = "Root"
+    effect = "Allow"
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+    }
+    actions = [
+      "kms:*"
+    ]
+    resources = ["*"]
+  }
+  statement {
+    sid    = "DataSyncRoleUsage"
+    effect = "Allow"
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/datasync_role"]
+    }
+    actions = [
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*"
+    ]
+    resources = ["*"]
   }
 }
