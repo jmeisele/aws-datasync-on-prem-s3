@@ -10,6 +10,11 @@ resource "aws_s3_bucket_ownership_controls" "this" {
   }
 }
 
+resource "aws_s3_bucket_policy" "allow_access_from_datasync_role" {
+  bucket = aws_s3_bucket.this.id
+  policy = data.aws_iam_policy_document.allow_access_from_datasync_role.json
+}
+
 resource "aws_iam_role" "datasync" {
   name               = "datasync_role"
   path               = "/"
