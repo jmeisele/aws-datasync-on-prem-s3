@@ -7,7 +7,7 @@ resource "aws_datasync_location_s3" "staging" {
 }
 
 resource "aws_datasync_agent" "this" {
-  activation_key = "NIV7E-E90I5-OOOF3-FKLG6-68NG5"
+  activation_key = "IRNBK-ULD0T-KMS6E-R8MN5-IRI5C"
   name           = "jason-mbp"
 }
 
